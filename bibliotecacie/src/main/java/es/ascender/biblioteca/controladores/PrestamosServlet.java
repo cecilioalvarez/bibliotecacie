@@ -68,7 +68,7 @@ public class PrestamosServlet extends HttpServlet {
 					int idejemplar=Integer.parseInt(request.getParameter("idejemplar"));
 					int idcopia=Integer.parseInt(request.getParameter("idcopia"));
 
-					Prestamo p=new Prestamo(identificador, fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), idejemplar,idcopia);
+					Prestamo p=new Prestamo(identificador, fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 					PrestamoRepository repo=new PrestamoRepositoryJDBC();
 					repo.insertar(p);
 					

@@ -32,7 +32,7 @@ public class PrestamoRepositoryJDBC implements PrestamoRepository {
 			
 			while(rs.next()) {
 				
-				Prestamo p= new Prestamo(rs.getInt("identificador"),rs.getDate("fecha").toLocalDate(),rs.getInt("idejemplar"),rs.getInt("idcopia"));
+				Prestamo p= new Prestamo(rs.getInt("identificador"),rs.getDate("fecha").toLocalDate());
 				lista.add(p);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -50,7 +50,7 @@ public class PrestamoRepositoryJDBC implements PrestamoRepository {
 			Class.forName("com.mysql.jdbc.Driver");
 			conexion=DriverManager.getConnection(DB_URL,USER,PASS);
 			sentencia=conexion.createStatement();
-			String insertarSql = "insert into prestamos values('"+prestamo.getIdentificador()+"','"+prestamo.getFecha()+"','"+prestamo.getIdejemplar()+"','"+prestamo.getIdcopia()+"')";
+			String insertarSql = "insert into prestamos values('"+prestamo.getIdentificador()+"','"+prestamo.getFecha()+"')";
 			
 			System.out.println(insertarSql);
 			
@@ -97,7 +97,7 @@ public class PrestamoRepositoryJDBC implements PrestamoRepository {
 			
 			while(rs.next()) {
 				
-				Prestamo p= new Prestamo(rs.getInt("identificador"),rs.getDate("fecha").toLocalDate(),rs.getInt("idejemplar"),rs.getInt("idcopia"));
+				Prestamo p= new Prestamo(rs.getInt("identificador"),rs.getDate("fecha").toLocalDate());
 				lista.add(p);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
