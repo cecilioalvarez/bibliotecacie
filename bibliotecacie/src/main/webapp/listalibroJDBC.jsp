@@ -27,8 +27,7 @@
 
 
 	<%
-	
-List<Socio> lista=(List<Socio>) request.getAttribute("lista");
+	List<Libro> lista=(List<Libro>) request.getAttribute("lista");
 	%>
 	<h1>Listado de Socios</h1>
 	<table class="table table-striped table-hover">
@@ -43,8 +42,8 @@ List<Socio> lista=(List<Socio>) request.getAttribute("lista");
  
 
 		<%
-		for (Socio s : lista) {
-		%>
+ 		for (Libro s : lista) {
+ 		%>
 		<tr>
 			<td><%=s.getDni()%></td>
 			<td><%=s.getNombre()%></td>
