@@ -32,6 +32,7 @@ List<Prestamo> lista=(List<Prestamo>) request.getAttribute("lista");%>
 					<th><a href="?orden=identificador">Identificador</th>
 					<th><a href="?orden=fecha">Fecha</th>
 					<th><a href="?orden=idejemplar">Id Ejemplar</th>
+					<th><a href="?orden=idcopia">Id Copia</th>
 					<th>Borrar</th>
 				</tr>
 			</thead>
