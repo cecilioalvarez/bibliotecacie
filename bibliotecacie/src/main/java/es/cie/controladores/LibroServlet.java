@@ -30,7 +30,7 @@ public class LibroServlet extends HttpServlet {
 			
 
 			if(request.getParameter("orden")!=null){
-				//out.println("Jerarquía a base de "+request.getParameter("orden"));
+				
 				lista=repo.porOrden(request.getParameter("orden"));
 			}else 
 				lista=repo.buscarTodos();
@@ -53,7 +53,9 @@ public class LibroServlet extends HttpServlet {
 			LibroRepository repo=new LibroRepositoryJDBC();
 			repo.insertar (l);
 			
-			
+			request.setAttribute("lista", lista);
+			RequestDispatcher despachador=request.getRequestDispatcher("listasociosjdbc.jsp");
+			despachador.forward(request, response);
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

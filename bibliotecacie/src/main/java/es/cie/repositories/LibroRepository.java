@@ -2,7 +2,6 @@ package es.cie.repositories;
 
 import java.util.List;
 
-import es.ascender.biblioteca.negocio.Socio;
 import es.cie.negocio.Libro;
 
 public interface LibroRepository {
