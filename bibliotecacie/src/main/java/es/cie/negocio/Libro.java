@@ -1,5 +1,5 @@
 package es.cie.negocio;
 
-public class Socio {
+public class Libro {
 
 }
