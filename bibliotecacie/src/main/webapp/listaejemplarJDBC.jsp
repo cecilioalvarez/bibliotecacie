@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ page import="es.ascender.biblioteca.negocio.Socio"%>
+<%@ page import="es.cie.negocio.Ejemplar"%>
 <%@ page import="java.util.List"%>
 
 <!DOCTYPE html>
@@ -27,35 +27,37 @@
 
 
 	<%
-	List<Libro> lista=(List<Libro>) request.getAttribute("lista");
+	List<Ejemplar> lista=(List<Ejemplar>) request.getAttribute("lista");
 	%>
-	<h1>Listado de Socios</h1>
+	<h1>Listado de Ejemplares</h1>
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th><a href="?orden=dni"> DNI </a></th>
-				<th><a href="?orden=nombre"> Nombre </a></th>
-				<th><a href="?orden=apellidos"> Apellidos </a></th>
+				<th> ID</th>
+				<th> ISBN</th>
+				<th> Titulo</th>
+				<th> Autor</th>
 				<th>Borrar</th>
 			</tr>
 		</thead>
  
 
 		<%
- 		for (Libro s : lista) {
+ 		for (Ejemplar e : lista) {
  		%>
 		<tr>
-			<td><%=s.getDni()%></td>
-			<td><%=s.getNombre()%></td>
-			<td><%=s.getApellidos()%></td>
-			<td><a class="btn btn-secondary" href="?comando=borrarsocio&dni=<%=s.getDni()%>">
+			<td><%=e.getId()%></td>
+			<td><%=e.getIsbn()%></td>
+			<td><%=e.getTitulo()%></td>
+			<td><%=e.getAutor()%></td>
+			<td><a class="btn btn-secondary" href="?comando=borrarsocio&dni=<%=e.getId()%>">
 					Borrar</a></td>
 		</tr>
 		<%
 		}
 		%>
 	</table>
-	<a href="?comando=formulariosocio"> Insertar Socio</a>
+	<a href="?comando=formularioejemplar"> Insertar ejemplar</a>
 
 
 </body>
