@@ -20,50 +20,58 @@ import es.cie.repositories.jdbc.LibroRepositoryJDBC;
 @WebServlet("/LibroServlet")
 public class LibroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    LibroRepository repo= new LibroRepositoryJDBC();
-    List <Libro> lista=repo.buscarTodos();
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		if(request.getParameter("comando")==null) {
-			
 
-			if(request.getParameter("orden")!=null){
+	LibroRepository repo = new LibroRepositoryJDBC();
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		List<Libro> lista = repo.buscarTodos();
+		if (request.getParameter("comando") == null) {
+
+			if (request.getParameter("orden") != null) {
+
+				lista = repo.porOrden(request.getParameter("orden"));
 				
-				lista=repo.porOrden(request.getParameter("orden"));
-			}else 
-				lista=repo.buscarTodos();
+				
+			
+			} else {
+				lista = repo.buscarTodos();
+				request.setAttribute("lista", lista);
+				RequestDispatcher despachador = request.getRequestDispatcher("buscadorlibrojdbc.jsp");
+
+				despachador.forward(request, response);
+
+			}
 		}
-		
-		request.getAttribute("lista",lista);
-		RequestDispatcher despachador = request.getRequestDispatcher("buscadorlibrojdbc.jsp");
-	
-		despachador.forward(request, response);
-	}else {
-		String comando=request.getParameter("comando");
-		if(comando.equals("formulariolibro")) {
-			
-RequestDispatcher despachador=request.getRequestDispatcher("formulariolibro.html");
-			
-			despachador.forward(request, response);
-		}else if(comando.equals("salvarlibro")) {
-			
-			String isbn= request.getParameter("isbn");
-			String titulo=request.getParameter("titulo");
-			String autor=request.getParameter("autor");
-			int paginas=request.getParameter("paginas");
-			
-			Libro l=new Libro(isbn,titulo,autor,paginas);
-			LibroRepository repo=new LibroRepositoryJDBC();
-			repo.insertar (l);
-			
-			request.setAttribute("lista", lista);
-			RequestDispatcher despachador=request.getRequestDispatcher("listasociosjdbc.jsp");
-			despachador.forward(request, response);
+
+		else {
+			String comando = request.getParameter("comando");
+			if (comando.equals("formulariolibro")) {
+
+				RequestDispatcher despachador = request.getRequestDispatcher("formulariolibro.html");
+
+				despachador.forward(request, response);
+			} else if (comando.equals("salvarlibro")) {
+
+				String isbn = request.getParameter("isbn");
+				String titulo = request.getParameter("titulo");
+				String autor = request.getParameter("autor");
+				int paginas = Integer.parseInt(request.getParameter("paginas"));
+
+				Libro l = new Libro(isbn, titulo, autor, paginas);
+				LibroRepository repo = new LibroRepositoryJDBC();
+				repo.insertar(l);
+
+				request.setAttribute("lista", lista);
+				RequestDispatcher despachador = request.getRequestDispatcher("listasociosjdbc.jsp");
+				despachador.forward(request, response);
+			}
 		}
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
