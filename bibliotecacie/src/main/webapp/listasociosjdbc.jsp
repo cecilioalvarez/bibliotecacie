@@ -56,7 +56,7 @@
 		</table>
 		<!-- a es un enlace a otra pagina -->
 		<!-- lleva una propiedad href con la pagina de destino y un texto -->
-		<a href="?comando=salvarsocio">insertar</a>
+		<a href="?comando=formulariosocios">insertar</a>
 		</div>
 </body>
 </html>
