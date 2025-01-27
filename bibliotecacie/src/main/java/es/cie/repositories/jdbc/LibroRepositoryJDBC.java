@@ -17,6 +17,28 @@ public class LibroRepositoryJDBC implements LibroRepository{
 	List<Libro> lista = new ArrayList<Libro> ();
 	
 	
+	@Override
+	public List<Libro> buscarTodos() {
+		try (Connection conexion = DriverManager.getConnection(cadenaconexion, "root", "");
+			Statement sentencia = conexion.createStatement();) {
+		ResultSet rs = sentencia.executeQuery("select * from libro");
+
+		while (rs.next()) {
+			Libro l = new Libro(rs.getString("isbn"), rs.getString("autor"), rs.getString("titulo"),
+					rs.getInt("paginas"));
+			lista.add(l);
+		}
+	} catch (SQLException e) {
+
+		e.printStackTrace();
+	}
+	
+	return lista;
+	}
+	
+
+	
+	
 	
 	@Override
 	public List<Libro> porAutor(Libro libro) {
