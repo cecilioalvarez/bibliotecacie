@@ -6,8 +6,7 @@ public class Prestamo {
 
 	private int identificador;
 	private LocalDate fecha;
-	private int idejemplar;
-	private int idcopia;
+	
 	
 	
 	public int getIdentificador() {
@@ -22,25 +21,14 @@ public class Prestamo {
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
-	public int getIdejemplar() {
-		return idejemplar;
-	}
-	public void setIdejemplar(int idejemplar) {
-		this.idejemplar = idejemplar;
-	}
-	public int getIdcopia() {
-		return idcopia;
-	}
-	public void setIdcopia(int idcopia) {
-		this.idcopia = idcopia;
-	}
+
 	
-	public Prestamo(int identificador, LocalDate fecha, int idejemplar, int idcopia) {
+	
+	public Prestamo(int identificador, LocalDate fecha) {
 		super();
 		this.identificador = identificador;
 		this.fecha = fecha;
-		this.idejemplar = idejemplar;
-		this.idcopia = idcopia;
+		
 	}
 	public Prestamo(int identificador) {
 		super();
