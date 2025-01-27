@@ -13,7 +13,7 @@
 
 	<%
 
-List<Dvd> lista=(list<Dvd>) request.getAttribute("lista");
+List<Dvd> lista=(List<Dvd>) request.getAttribute("lista");
 
 %>
 	<table>
@@ -32,8 +32,8 @@ List<Dvd> lista=(list<Dvd>) request.getAttribute("lista");
 
 			<td><%=d.getTitulo() %></td>
 			<td><%=d.getAnio() %></td>
-			<td><%=d.getDisponible() %></td>
-			<td><a href="?comando=borrardvd&iddvd=<%d.getTitulo()%>">Borrar</a></td>
+            <td><%=d.getDisponible() ? "disponible" : "no disponible" %></td>			
+            <td><a href="?comando=borrardvd&iddvd=<%=d.getIddvd()%>">Borrar</a></td>
 		</tr>
 
 		<%} %>

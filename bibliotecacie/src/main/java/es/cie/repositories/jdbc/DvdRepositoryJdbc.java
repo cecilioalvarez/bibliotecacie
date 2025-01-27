@@ -11,7 +11,7 @@ import java.util.List;
 import es.cie.negocio.Dvd;
 import es.cie.repositories.DvdRepository;
 
-public class DvdRepositoryJDBC implements DvdRepository {
+public class DvdRepositoryJdbc implements DvdRepository {
 	static final String DB_URL = "jdbc:mysql://localhost:3306/biblioteca";
 	static final String USER = "root";
 	static final String PASS = "";
