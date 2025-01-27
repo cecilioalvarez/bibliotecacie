@@ -41,10 +41,10 @@ public class LibroRepositoryJDBC implements LibroRepository{
 	
 	
 	@Override
-	public List<Libro> porAutor(Libro libro) {
+	public List<Libro> porAutor(String autor) {
 		try (Connection conexion= DriverManager.getConnection(cadenaconexion, "root","");
 				Statement sentencia = conexion.createStatement();){
-			ResultSet rs = sentencia.executeQuery("select * from libro where autor= '"+libro.getAutor()+"'");
+			ResultSet rs = sentencia.executeQuery("select * from libro where autor= '"+autor+"'");
 			while (rs.next()) {
 				Libro l = new Libro (rs.getString("autor"));
 				lista.add(l);
@@ -57,10 +57,10 @@ public class LibroRepositoryJDBC implements LibroRepository{
 		return lista;
 	}
 	@Override
-	public List<Libro> porTitulo(Libro libro) {
+	public List<Libro> porTitulo(String titulo) {
 		try (Connection conexion= DriverManager.getConnection(cadenaconexion, "root","");
 				Statement sentencia = conexion.createStatement();){
-			ResultSet rs = sentencia.executeQuery("select * from libro where titulo= '"+libro.getTitulo()+"'");
+			ResultSet rs = sentencia.executeQuery("select * from libro where titulo= '"+titulo+"'");
 			while (rs.next()) {
 				Libro l = new Libro (rs.getString("titulo"));
 				lista.add(l);
@@ -73,7 +73,7 @@ public class LibroRepositoryJDBC implements LibroRepository{
 		return lista;
 	}
 	@Override
-	public List<Libro> porOrden (Libro orden){
+	public List<Libro> porOrden (String orden){
 	try (Connection conexion = DriverManager.getConnection(cadenaconexion, "root", "");
 			Statement sentencia = conexion.createStatement();) {
 		ResultSet rs = sentencia.executeQuery("select * from libro order by"+orden);
