@@ -36,12 +36,12 @@
 	
 	if (tipobusqueda != null && textobusqueda != null) {
 		if (tipobusqueda.equalsIgnoreCase("titulo")) {
-			lista = repo.buscarPorTitulo(textobusqueda);
+			lista = repo.porTitulo(textobusqueda);
 		} else if (tipobusqueda.equalsIgnoreCase("autor")) {
-			lista = repo.buscarPorAutor(textobusqueda);
+			lista = repo.porAutor(textobusqueda);
 
 		} else if (tipobusqueda.equalsIgnoreCase("isbn")) {
-			lista = repo.buscarPorAutor(textobusqueda);
+			lista = repo.porAutor(textobusqueda);
 	
 		}else {
 		lista = repo.buscarTodos();
