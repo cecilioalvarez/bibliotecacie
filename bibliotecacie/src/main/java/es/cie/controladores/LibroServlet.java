@@ -25,9 +25,15 @@ public class LibroServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+		if(request.getParameter("comando")==null) {
+			
+
+			if(request.getParameter("orden")!=null){
+				//out.println("Jerarquía a base de "+request.getParameter("orden"));
+				lista=repo.porOrden(request.getParameter("orden"));
+			}else 
+				lista=repo.buscarTodos();
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
