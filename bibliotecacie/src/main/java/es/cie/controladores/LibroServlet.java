@@ -25,24 +25,22 @@ public class LibroServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		
+		System.out.println("hola");
 		List<Libro> lista = repo.buscarTodos();
+		
 		if (request.getParameter("comando") == null) {
 
-			if (request.getParameter("orden") != null) {
-
-				lista = repo.porOrden(request.getParameter("orden"));
-				
-				
-			
-			} else {
-				lista = repo.buscarTodos();
+		
+				System.out.println("llega");
+				System.out.println("llega"+lista.size());
 				request.setAttribute("lista", lista);
 				RequestDispatcher despachador = request.getRequestDispatcher("buscadorlibrojdbc.jsp");
 
 				despachador.forward(request, response);
 
-			}
+			
 		}
 
 		else {

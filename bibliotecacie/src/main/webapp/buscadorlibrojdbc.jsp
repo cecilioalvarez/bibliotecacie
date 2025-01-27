@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ page import="es.cie.repositories.LibroRepository"%>
-<%@ page import="es.cie.repositories.jdbc.LibroRepositoryJDBC"%>
+ç
 <%@ page import="es.cie.negocio.Libro"%>
 <%@ page import="java.util.List"%>
+
+<% List<Libro>  lista= (List<Libro>)request.getAttribute("lista"); %>
 
 <!DOCTYPE html>
 <html>
@@ -26,28 +27,8 @@
 
 	<div class="container">
 
-	<% 
-	LibroRepository repo= new LibroRepositoryJDBC();
-	
-	String tipobusqueda = request.getParameter("tipobusqueda");
 
-	String textobusqueda = request.getParameter("textobusqueda");
-	List<Libro> lista = null;
-	
-	if (tipobusqueda != null && textobusqueda != null) {
-		if (tipobusqueda.equalsIgnoreCase("titulo")) {
-			lista = repo.porTitulo(textobusqueda);
-		} else if (tipobusqueda.equalsIgnoreCase("autor")) {
-			lista = repo.porAutor(textobusqueda);
 
-		} else if (tipobusqueda.equalsIgnoreCase("isbn")) {
-			lista = repo.porAutor(textobusqueda);
-	
-		}else {
-		lista = repo.buscarTodos();
-	}
-
-%>
 
 
 	<form method="get">

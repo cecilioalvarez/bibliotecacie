@@ -11,102 +11,103 @@ import java.util.List;
 import es.cie.negocio.Libro;
 import es.cie.repositories.LibroRepository;
 
-public class LibroRepositoryJDBC implements LibroRepository{
+public class LibroRepositoryJDBC implements LibroRepository {
+
+	String cadenaconexion = "jdbc:mysql://localhost:3306/bibliotecacie";
 	
-	String cadenaconexion= "jdbc:mysql://localhost:3306/bibliotecacie";
-	List<Libro> lista = new ArrayList<Libro> ();
-	
-	
+
 	@Override
 	public List<Libro> buscarTodos() {
-		try (Connection conexion = DriverManager.getConnection(cadenaconexion, "root", "");
-			Statement sentencia = conexion.createStatement();) {
-		ResultSet rs = sentencia.executeQuery("select * from libro");
 
-		while (rs.next()) {
-			Libro l = new Libro(rs.getString("isbn"), rs.getString("autor"), rs.getString("titulo"),
-					rs.getInt("paginas"));
-			lista.add(l);
-		}
-	} catch (SQLException e) {
+		List<Libro> lista = new ArrayList<Libro>();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(cadenaconexion, "root", "");
+			Statement sentencia = conexion.createStatement();
+			ResultSet rs = sentencia.executeQuery("select * from libro");
 
-		e.printStackTrace();
-	}
-	
-	return lista;
-	}
-	
-
-	
-	
-	
-	@Override
-	public List<Libro> porAutor(String autor) {
-		try (Connection conexion= DriverManager.getConnection(cadenaconexion, "root","");
-				Statement sentencia = conexion.createStatement();){
-			ResultSet rs = sentencia.executeQuery("select * from libro where autor= '"+autor+"'");
 			while (rs.next()) {
-				Libro l = new Libro (rs.getString("autor"));
+				Libro l = new Libro(rs.getString("isbn"), rs.getString("autor"), rs.getString("titulo"),
+						rs.getInt("paginas"));
 				lista.add(l);
 			}
-		}catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-		
-		return lista;
-	}
-	@Override
-	public List<Libro> porTitulo(String titulo) {
-		try (Connection conexion= DriverManager.getConnection(cadenaconexion, "root","");
-				Statement sentencia = conexion.createStatement();){
-			ResultSet rs = sentencia.executeQuery("select * from libro where titulo= '"+titulo+"'");
-			while (rs.next()) {
-				Libro l = new Libro (rs.getString("titulo"));
-				lista.add(l);
-			}
-		}catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-		
-		return lista;
-	}
-	@Override
-	public List<Libro> porOrden (String orden){
-	try (Connection conexion = DriverManager.getConnection(cadenaconexion, "root", "");
-			Statement sentencia = conexion.createStatement();) {
-		ResultSet rs = sentencia.executeQuery("select * from libro order by"+orden);
+		} catch (SQLException e) {
 
-		while (rs.next()) {
-			Libro l = new Libro(rs.getString("isbn"), rs.getString("autor"), rs.getString("titulo"),
-					rs.getInt("paginas"));
-			lista.add(l);
-		}
-	} catch (SQLException e) {
-
-		e.printStackTrace();
-	}
-
-	return lista;
-}
-
-	public void insertar(Libro libro) {
-	
-		
-		try (Connection conexion=DriverManager.getConnection(cadenaconexion, "root", "");
-			Statement sentencia=conexion.createStatement();){
-			
-			
-			String insertarSql = "insert into libro values ('"+libro.getIsbn()+"','"+libro.getTitulo()+"','"+libro.getAutor()+"','"+libro.getPaginas()+"')";
-			System.out.println(insertarSql);
-			sentencia.executeUpdate(insertarSql);
-			
-		} catch ( SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-	}	
+
+		return lista;
+	}
+
+	@Override
+	public List<Libro> porAutor(String autor) {
+		try (Connection conexion = DriverManager.getConnection(cadenaconexion, "root", "");
+				Statement sentencia = conexion.createStatement();) {
+			ResultSet rs = sentencia.executeQuery("select * from libro where autor= '" + autor + "'");
+			while (rs.next()) {
+				Libro l = new Libro(rs.getString("autor"));
+				lista.add(l);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return lista;
+	}
+
+	@Override
+	public List<Libro> porTitulo(String titulo) {
+		try (Connection conexion = DriverManager.getConnection(cadenaconexion, "root", "");
+				Statement sentencia = conexion.createStatement();) {
+			ResultSet rs = sentencia.executeQuery("select * from libro where titulo= '" + titulo + "'");
+			while (rs.next()) {
+				Libro l = new Libro(rs.getString("titulo"));
+				lista.add(l);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return lista;
+	}
+
+	@Override
+	public List<Libro> porOrden(String orden) {
+		try (Connection conexion = DriverManager.getConnection(cadenaconexion, "root", "");
+				Statement sentencia = conexion.createStatement();) {
+			ResultSet rs = sentencia.executeQuery("select * from libro order by" + orden);
+
+			while (rs.next()) {
+				Libro l = new Libro(rs.getString("isbn"), rs.getString("autor"), rs.getString("titulo"),
+						rs.getInt("paginas"));
+				lista.add(l);
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+		return lista;
+	}
+
+	public void insertar(Libro libro) {
+
+		try (Connection conexion = DriverManager.getConnection(cadenaconexion, "root", "");
+				Statement sentencia = conexion.createStatement();) {
+
+			String insertarSql = "insert into libro values ('" + libro.getIsbn() + "','" + libro.getTitulo() + "','"
+					+ libro.getAutor() + "','" + libro.getPaginas() + "')";
+			System.out.println(insertarSql);
+			sentencia.executeUpdate(insertarSql);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 }
