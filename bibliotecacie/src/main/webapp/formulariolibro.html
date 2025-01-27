@@ -11,38 +11,46 @@
  
 <head>
 <meta charset="UTF-8">
-<title>INTRODUCCION DE SOCIOS</title>
+<title>INTRODUCCION DE LIBRO</title>
 </head>
-<h1 style="text-align: center;">INTRODUCCION SOCIOS</h1>
+<h1 style="text-align: center;">INTRODUCCION LIBRO</h1>
 <body>
 <form action="">
 <!--  El action define donde se reciben los datos.  -->
 <div class="container">
 <div class="form-group">
 <p>
-<label for="dni"> Dni:</label>
-<input type="text" name="dni" class="form-control" name="dni" placeholder="Introduce el Dni"/>
-<small class="form-text" > el campo del Dni</small>
+<label for="isbn"> Isbn:</label>
+<input type="text" name="isbn" class="form-control" name="isbn" placeholder="Introduce el Isbn"/>
+<small class="form-text" > el campo del Isbn</small>
 </p>
 </div>
 <div class="form-group">
 <p>
-<label for="nombre"> Nombre:</label>
-<input type="text" name="nombre" class="form-control" name="nombre" placeholder="Introduce el Nombre"/>
-<small class="form-text" > el campo del Nombre</small>
+<label for="titulo"> Titulo:</label>
+<input type="text" name="titulo" class="form-control" name="titulo" placeholder="Introduce el Titulo"/>
+<small class="form-text" > el campo del Titulo</small>
 </p>
 </div>
 <div class="form-group">
 <p>
-<label for="apellidos"> Apellidos:</label>
-<input type="text" name="apellidos" class="form-control" name="apellidos" placeholder="Introduce el Apellidos"/>
-<small class="form-text" > el campo del Apellidos</small>
+<label for="autor"> Autor:</label>
+<input type="text" name="autor" class="form-control" name="autor" placeholder="Introduce el Autor"/>
+<small class="form-text" > el campo del Autor</small>
+</p>
+</div>
+
+<div class="form-group">
+<p>
+<label for="paginas"> Paginas:</label>
+<input type="text" name="paginas" class="form-control" name="paginas" placeholder="Introduce Las Paginas"/>
+<small class="form-text" > el campo de las paginas</small>
 </p>
 </div>
 
 
 <p>
-<input type="hidden" name="comando" value="salvarsocio"/>
+<input type="hidden" name="comando" value="salvarlibro"/>
 <input type="submit" value="Salvar"/>
 </p>
 </div>

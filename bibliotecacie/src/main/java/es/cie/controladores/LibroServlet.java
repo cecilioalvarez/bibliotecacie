@@ -42,7 +42,12 @@ public class LibroServlet extends HttpServlet {
 		despachador.forward(request, response);
 	}else {
 		String comando=request.getParameter("comando");
-		if(comando.equals("formulario")) {
+		if(comando.equals("formulariolibro")) {
+			
+RequestDispatcher despachador=request.getRequestDispatcher("formulariolibro.html");
+			
+			despachador.forward(request, response);
+		}else if(comando.equals("salvarlibro")) {
 			
 			String isbn= request.getParameter("isbn");
 			String titulo=request.getParameter("titulo");
