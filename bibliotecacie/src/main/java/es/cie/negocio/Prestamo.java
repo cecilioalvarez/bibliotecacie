@@ -1,48 +1,54 @@
 package es.cie.negocio;
 
+import java.time.LocalDate;
+
 public class Prestamo {
+
+	private int identificador;
+	private LocalDate fecha;
+	private int idejemplar;
+	private int idcopia;
 	
-	private String identificador;
-	private String fecha;
-	private String idEjemplar;
-	private String idCopia;
-	public Prestamo(String identificador) {
+	
+	public int getIdentificador() {
+		return identificador;
+	}
+	public void setIdentificador(int identificador) {
+		this.identificador = identificador;
+	}
+	public LocalDate getFecha() {
+		return fecha;
+	}
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
+	public int getIdejemplar() {
+		return idejemplar;
+	}
+	public void setIdejemplar(int idejemplar) {
+		this.idejemplar = idejemplar;
+	}
+	public int getIdcopia() {
+		return idcopia;
+	}
+	public void setIdcopia(int idcopia) {
+		this.idcopia = idcopia;
+	}
+	
+	public Prestamo(int identificador, LocalDate fecha, int idejemplar, int idcopia) {
+		super();
+		this.identificador = identificador;
+		this.fecha = fecha;
+		this.idejemplar = idejemplar;
+		this.idcopia = idcopia;
+	}
+	public Prestamo(int identificador) {
 		super();
 		this.identificador = identificador;
 	}
 	public Prestamo() {
 		super();
 	}
-	public Prestamo(String identificador, String fecha, String idEjemplar, String idCopia) {
-		super();
-		this.identificador = identificador;
-		this.fecha = fecha;
-		this.idEjemplar = idEjemplar;
-		this.idCopia = idCopia;
-	}
-	public String getIdentificador() {
-		return identificador;
-	}
-	public void setIdentificador(String identificador) {
-		this.identificador = identificador;
-	}
-	public String getFecha() {
-		return fecha;
-	}
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
-	}
-	public String getIdEjemplar() {
-		return idEjemplar;
-	}
-	public void setIdEjemplar(String idEjemplar) {
-		this.idEjemplar = idEjemplar;
-	}
-	public String getIdCopia() {
-		return idCopia;
-	}
-	public void setIdCopia(String idCopia) {
-		this.idCopia = idCopia;
-	}
+	
 	
 }
