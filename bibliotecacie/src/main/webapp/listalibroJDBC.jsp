@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 
 <%@ page import="es.cie.negocio.Libro"%>
+<%@ page import="es.cie.repositories.LibroRepository"%>
+<%@ page import="es.cie.repositories.jdbc.LibroRepositoryJDBC"%>
 <%@ page import="java.util.List"%>
 
 <!DOCTYPE html>
@@ -26,40 +28,49 @@
 	<div class="container">
 
 
-	<%
-	List<Libro> lista=(List<Libro>) request.getAttribute("lista");
-	%>
-	<h1>Listado de Libro</h1>
-	<table class="table table-striped table-hover">
-		<thead>
-			<tr>
-				<th><a href="?orden=isbn"> ISBN </a></th>
-				<th><a href="?orden=titulo"> Titulo </a></th>
-				<th><a href="?orden=autor"> Autor </a></th>
-				<th><a href="?orden=paginas"> Paginas </a></th>
-				<th>Borrar</th>
-			</tr>
-		</thead>
- 
+		<%
+		LibroRepository repo = new LibroRepositoryJDBC();
+		List<Libro> lista = null;
 
-		<%
- 		for (Libro l : lista) {
- 		%>
- 		
-		<tr>
-			<td><%=l.getIsbn()%></td>
-			<td><%=l.getTitulo()%></td>
-			<td><%=l.getAutor()%></td>
-			<td><%=l.getPaginas()%></td>
-			<td><a class="btn btn-secondary" href="?comando=borrarlibro&isbn=<%=l.getIsbn()%>">
-					Borrar</a></td>
-		</tr>
-		<%
+		if (request.getParameter("orden") != null) {
+			out.println("Ordenado por " + request.getParameter("orden"));
+			lista = repo.buscarTodosOrdenados(request.getParameter("orden"));
+		} else {
+
+			out.println("Lista sin ordenar");
+			lista = repo.buscarTodos();
 		}
 		%>
-	</table>
-	<a href="?comando=formulariolibro"> Insertar Libro</a>
+
+		<h1>Listado de Libro</h1>
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th><a href="?orden=isbn"> ISBN </a></th>
+					<th><a href="?orden=titulo"> Titulo </a></th>
+					<th><a href="?orden=autor"> Autor </a></th>
+					<th><a href="?orden=paginas"> Paginas </a></th>
+					<th>Borrar</th>
+				</tr>
+			</thead>
 
 
+			<%
+			for (Libro l : lista) {
+			%>
+
+			<tr>
+				<td><%=l.getIsbn()%></td>
+				<td><%=l.getTitulo()%></td>
+				<td><%=l.getAutor()%></td>
+				<td><%=l.getPaginas()%></td>
+				<td><a class="btn btn-secondary"
+					href="?comando=borrarlibro&isbn=<%=l.getIsbn()%>"> Borrar</a></td>
+			</tr>
+			<%
+			}
+			%>
+		</table>
+		<a href="?comando=formulariolibro"> Insertar Libro</a>
 </body>
 </html>

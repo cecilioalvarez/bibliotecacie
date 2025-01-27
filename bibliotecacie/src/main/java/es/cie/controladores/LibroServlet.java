@@ -78,5 +78,4 @@ public class LibroServlet extends HttpServlet {
 
 	}
 
-	
-	}
+}
