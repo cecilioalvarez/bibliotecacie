@@ -16,7 +16,7 @@ import es.ascender.biblioteca.repositories.jdbc.SocioRepositoryJDBC;
 
 
 @WebServlet("/SociosServlet")
-public class SociosServlet extends HttpServlet {
+public class EjemplarServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
