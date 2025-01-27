@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="es.cie.negocio.LineaPrestamo"%>
+<%@page import="es.cie.negocio.LineaPrestamo" %>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
@@ -42,13 +42,13 @@ List<LineaPrestamo> lista=(List<LineaPrestamo>) request.getAttribute("lista");%>
 			for (LineaPrestamo lp : lista) {
 			%>
 				<tr>
-					<td><%=p.getIdentificador()%></td>
-					<td><%=p.getIdentificadorlinea()%></td>
-					<td><%=p.getIdejemplar()%></td>
-					<td><%=p.getIdcopia()%></td>
+					<td><%=lp.getIdentificador()%></td>
+					<td><%=lp.getIdentificadorlinea()%></td>
+					<td><%=lp.getIdejemplar()%></td>
+					<td><%=lp.getIdcopia()%></td>
 					
 					
-					<td><a href="?comando=borrarlineaprestamo&identificador=<%=p.getIdentificador()%>">borrar</a></td>
+					<td><a href="?comando=borrarlineaprestamo&identificador=<%=lp.getIdentificador()%>&identificadorlinea=<%=lp.getIdentificadorlinea()%>">borrar</a></td>
 				</tr>
 			<%
 			}
