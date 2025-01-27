@@ -66,6 +66,7 @@
 				<td><%=l.getPaginas()%></td>
 				<td><a class="btn btn-secondary"
 					href="?comando=borrarlibro&isbn=<%=l.getIsbn()%>"> Borrar</a></td>
+					
 			</tr>
 			<%
 			}

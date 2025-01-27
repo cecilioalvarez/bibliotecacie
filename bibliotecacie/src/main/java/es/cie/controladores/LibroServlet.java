@@ -72,10 +72,22 @@ public class LibroServlet extends HttpServlet {
 				request.setAttribute("lista", lista);
 				RequestDispatcher despachador = request.getRequestDispatcher("listalibroJDBC.jsp");
 				despachador.forward(request, response);
-			}
+			}else if (comando.equals("modificarlibro")) {
+
+				String isbn = request.getParameter("isbn");
+
+				Libro l = new Libro(isbn);
+				LibroRepository repo = new LibroRepositoryJDBC();
+				repo.modificar(l);
+				lista = repo.buscarTodos();
+
+				request.setAttribute("lista", lista);
+				RequestDispatcher despachador = request.getRequestDispatcher("listalibroJDBC.jsp");
+				despachador.forward(request, response);
 
 		}
 
 	}
 
-}
+	}
+	}
