@@ -16,6 +16,7 @@ import es.cie.repositories.jdbc.EjemplarRepositoryJDBC;
 
 @WebServlet("/EjemplarServlet")
 public class EjemplarServlet extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
 
 	EjemplarRepository repo = new EjemplarRepositoryJDBC();
@@ -24,16 +25,58 @@ public class EjemplarServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		lista = repo.buscarTodos();
+		if (request.getParameter("comando") == null) {
 
-		request.setAttribute("lista", lista);
-		RequestDispatcher dp = request.getRequestDispatcher("listaejemplarjdbc.jsp");
-		dp.forward(request, response);
-	}
+			if (request.getParameter("orden") != null) {
+				lista = repo.buscarTodosOrdenados(request.getParameter("orden"));
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
+			} else {
+				lista = repo.buscarTodos();
+			}
+			request.setAttribute("lista", lista);
+			RequestDispatcher despachador = request.getRequestDispatcher("listaejemplarJDBC.jsp");
+			despachador.forward(request, response);
+
+		} else {
+			String comando = request.getParameter("comando");
+			if (comando.equals("formularioejemplar")) {
+
+				RequestDispatcher despachador = request.getRequestDispatcher("formularioejemplar.html");
+				despachador.forward(request, response);
+
+			} else if (comando.equals("salvarejemplar")) {
+
+				// int id = Integer.parseInt(request.getParameter("id"));
+				String isbn = request.getParameter("isbn");
+				String titulo = request.getParameter("titulo");
+				String autor = request.getParameter("autor");
+
+				Ejemplar e = new Ejemplar(isbn, titulo, autor);
+				EjemplarRepository repo = new EjemplarRepositoryJDBC();
+				repo.insertar(e);
+				lista = repo.buscarTodos();
+
+				request.setAttribute("lista", lista);
+				RequestDispatcher despachador = request.getRequestDispatcher("listaejemplarJDBC.jsp");
+				despachador.forward(request, response);
+				response.sendRedirect("listaejemplarJDBC.jsp");
+
+			} else if (comando.equals("borrarejemplar")) {
+
+				int id = Integer.parseInt(request.getParameter("id"));
+
+				Ejemplar e = new Ejemplar(id);
+				EjemplarRepository repo = new EjemplarRepositoryJDBC();
+				repo.borrar(e);
+				lista = repo.buscarTodos();
+
+				request.setAttribute("lista", lista);
+				RequestDispatcher despachador = request.getRequestDispatcher("listaejemplarJDBC.jsp");
+				despachador.forward(request, response);
+			}
+
+		}
+
 	}
 
 }

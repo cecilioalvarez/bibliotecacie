@@ -6,7 +6,6 @@ public class Ejemplar {
 	private String isbn;
 	private String titulo;
 	private String autor;
-	private int paginas;
 
 	public int getId() {
 		return id;
@@ -40,27 +39,24 @@ public class Ejemplar {
 		this.autor = autor;
 	}
 
-	public int getPaginas() {
-		return paginas;
-	}
-
-	public void setPaginas(int paginas) {
-		this.paginas = paginas;
-	}
-
-	public Ejemplar(int id, String isbn, String titulo, String autor, int paginas) {
+	public Ejemplar(int id, String isbn, String titulo, String autor) {
 		super();
 		this.id = id;
 		this.isbn = isbn;
 		this.titulo = titulo;
 		this.autor = autor;
-		this.paginas = paginas;
 	}
 
-	public Ejemplar(int id, String isbn) {
+	public Ejemplar(String isbn, String titulo, String autor) {
+		super();
+		this.isbn = isbn;
+		this.titulo = titulo;
+		this.autor = autor;
+	}
+
+	public Ejemplar(int id) {
 		super();
 		this.id = id;
-		this.isbn = isbn;
 	}
 
 	public Ejemplar() {

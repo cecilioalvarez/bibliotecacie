@@ -29,7 +29,7 @@ public class EjemplarRepositoryJDBC implements EjemplarRepository {
 			rs = sentencia.executeQuery("select * from ejemplar");
 			while (rs.next()) {
 				Ejemplar e = new Ejemplar(rs.getInt("id"), rs.getString("isbn"), rs.getString("titulo"),
-						rs.getString("autor"), rs.getInt("paginas"));
+						rs.getString("autor"));
 				lista.add(e);
 			}
 
@@ -50,7 +50,7 @@ public class EjemplarRepositoryJDBC implements EjemplarRepository {
 			conexion = DriverManager.getConnection(DB_URL, USER, PASS);
 			sentencia = conexion.createStatement();
 			String insertarsql = "insert into ejemplar values ('" + ejemplar.getId() + "','" + ejemplar.getIsbn()
-					+ "','" + ejemplar.getTitulo() + "','" + ejemplar.getAutor() + "','" + ejemplar.getPaginas() + "')";
+					+ "','" + ejemplar.getTitulo() + "','" + ejemplar.getAutor() + "')";
 			System.out.println(insertarsql);
 			sentencia.executeUpdate(insertarsql);
 
@@ -69,7 +69,7 @@ public class EjemplarRepositoryJDBC implements EjemplarRepository {
 			Class.forName("com.mysql.jdbc.Driver");
 			conexion = DriverManager.getConnection(DB_URL, USER, PASS);
 			sentencia = conexion.createStatement();
-			String borrarsql = "delete from ejemplar where dni='" + ejemplar.getId() + "'";
+			String borrarsql = "delete from ejemplar where id='" + ejemplar.getId() + "'";
 			sentencia.executeUpdate(borrarsql);
 
 		} catch (ClassNotFoundException | SQLException e) {
@@ -80,9 +80,34 @@ public class EjemplarRepositoryJDBC implements EjemplarRepository {
 	}
 
 	@Override
+	public List<Ejemplar> buscarTodosOrdenados(String orden) {
+		Connection conexion = null;
+		Statement sentencia = null;
+		ResultSet rs = null;
+		List<Ejemplar> lista = new ArrayList<Ejemplar>();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = DriverManager.getConnection(DB_URL, USER, PASS);
+			sentencia = conexion.createStatement();
+			rs = sentencia.executeQuery("select * from ejemplar order by " + orden);
+			while (rs.next()) {
+				Ejemplar e = new Ejemplar(rs.getInt("id"), rs.getString("isbn"), rs.getString("titulo"),
+						rs.getString("autor"));
+				lista.add(e);
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
+
+	}
+
+	@Override
 	public void modificar(Ejemplar ejemplar) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

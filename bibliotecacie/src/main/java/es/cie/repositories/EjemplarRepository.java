@@ -14,4 +14,6 @@ public interface EjemplarRepository {
 	void borrar(Ejemplar ejemplar);
 
 	void modificar(Ejemplar ejemplar);
+
+	List<Ejemplar> buscarTodosOrdenados(String orden);
 }

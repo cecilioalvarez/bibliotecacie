@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 
 <%@ page import="es.cie.negocio.Ejemplar"%>
+<%@ page import="es.cie.repositories.EjemplarRepository"%>
+<%@ page import="es.cie.repositories.jdbc.EjemplarRepositoryJDBC"%>
 <%@ page import="java.util.List"%>
 
 <!DOCTYPE html>
@@ -26,39 +28,48 @@
 	<div class="container">
 
 
-	<%
-	List<Ejemplar> lista=(List<Ejemplar>) request.getAttribute("lista");
-	%>
-	<h1>Listado de Ejemplares</h1>
-	<table class="table table-striped table-hover">
-		<thead>
-			<tr>
-				<th> ID</th>
-				<th> ISBN</th>
-				<th> Titulo</th>
-				<th> Autor</th>
-				<th>Borrar</th>
-			</tr>
-		</thead>
- 
+		<%
+		EjemplarRepository repo = new EjemplarRepositoryJDBC();
+		List<Ejemplar> lista = null;
 
-		<%
- 		for (Ejemplar e : lista) {
- 		%>
-		<tr>
-			<td><%=e.getId()%></td>
-			<td><%=e.getIsbn()%></td>
-			<td><%=e.getTitulo()%></td>
-			<td><%=e.getAutor()%></td>
-			<td><a class="btn btn-secondary" href="?comando=borrarsocio&dni=<%=e.getId()%>">
-					Borrar</a></td>
-		</tr>
-		<%
+		if (request.getParameter("orden") != null) {
+			out.println("Ordenado por " + request.getParameter("orden"));
+			lista = repo.buscarTodosOrdenados(request.getParameter("orden"));
+		} else {
+
+			out.println("Lista sin ordenar");
+			lista = repo.buscarTodos();
 		}
 		%>
-	</table>
-	<a href="?comando=formularioejemplar"> Insertar ejemplar</a>
+
+		<h1>Listado de Ejemplares</h1>
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th><a href="?orden=id"> ID</a></th>
+					<th><a href="?orden=isbn">ISBN</a></th>
+					<th><a href="?orden=titulo">Titulo</a></th>
+					<th><a href="?orden=autor">Autor</a></th>
+					<th>Borrar</th>
+				</tr>
+			</thead>
 
 
+			<%
+			for (Ejemplar e : lista) {
+			%>
+			<tr>
+				<td><%=e.getId()%></td>
+				<td><%=e.getIsbn()%></td>
+				<td><%=e.getTitulo()%></td>
+				<td><%=e.getAutor()%></td>
+				<td><a class="btn btn-secondary"
+					href="?comando=borrarejemplar&id=<%=e.getId()%>"> Borrar</a></td>
+			</tr>
+			<%
+			}
+			%>
+		</table>
+		<a href="?comando=formularioejemplar"> Insertar ejemplar</a>
 </body>
 </html>
