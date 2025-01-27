@@ -3,6 +3,7 @@ package es.cie.controladores;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,10 +35,27 @@ public class LibroServlet extends HttpServlet {
 			}else 
 				lista=repo.buscarTodos();
 		}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+		
+		request.getAttribute("lista",lista);
+		RequestDispatcher despachador = request.getRequestDispatcher("buscadorlibrojdbc.jsp");
+	
+		despachador.forward(request, response);
+	}else {
+		String comando=request.getParameter("comando");
+		if(comando.equals("formulario")) {
+			
+			String isbn= request.getParameter("isbn");
+			String titulo=request.getParameter("titulo");
+			String autor=request.getParameter("autor");
+			int paginas=request.getParameter("paginas");
+			
+			Libro l=new Libro(isbn,titulo,autor,paginas);
+			LibroRepository repo=new LibroRepositoryJDBC();
+			repo.insertar (l);
+			
+			
+		}
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
