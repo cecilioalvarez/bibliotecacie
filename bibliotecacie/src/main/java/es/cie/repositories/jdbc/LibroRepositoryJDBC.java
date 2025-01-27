@@ -93,17 +93,16 @@ public class LibroRepositoryJDBC implements LibroRepository{
 
 	public void insertar(Libro libro) {
 	
-		Connection conexion=null;
-		Statement sentencia=null;
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conexion=DriverManager.getConnection(cadenaconexion, "root", "");
-			sentencia=conexion.createStatement();
+		
+		try (Connection conexion=DriverManager.getConnection(cadenaconexion, "root", "");
+			Statement sentencia=conexion.createStatement();){
+			
+			
 			String insertarSql = "insert into libro values ('"+libro.getIsbn()+"','"+libro.getTitulo()+"','"+libro.getAutor()+"','"+libro.getPaginas()+"')";
 			System.out.println(insertarSql);
 			sentencia.executeUpdate(insertarSql);
 			
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch ( SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
