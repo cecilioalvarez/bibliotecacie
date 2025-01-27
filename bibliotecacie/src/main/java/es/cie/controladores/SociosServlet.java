@@ -1,4 +1,4 @@
-package controladores;
+package es.cie.controladores;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.ascender.biblioteca.negocio.Socio;
-import es.ascender.biblioteca.repositories.SocioRepository;
-import es.ascender.biblioteca.repositories.jdbc.SocioRepositoryJDBC;
+import es.cie.negocio.Socio;
+import es.cie.repositories.SocioRepository;
+import es.cie.repositories.jdbc.SocioRepositoryJDBC;
 
 @WebServlet("/SociosServlet")
 public class SociosServlet extends HttpServlet {
