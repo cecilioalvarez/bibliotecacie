@@ -23,7 +23,7 @@
 	
 	%>
 	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 		crossorigin="anonymous"></script>
 	<div class="container">
@@ -57,5 +57,6 @@
 		<!-- a es un enlace a otra pagina -->
 		<!-- lleva una propiedad href con la pagina de destino y un texto -->
 		<a href="?comando=formulariosocio">insertar</a>
+		</div>
 </body>
 </html>
