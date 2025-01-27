@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.ascender.biblioteca.negocio.Socio;
 import es.cie.negocio.Prestamo;
 import es.cie.repositories.PrestamoRepository;
 
@@ -33,7 +32,7 @@ public class PrestamoRepositoryJDBC implements PrestamoRepository {
 			
 			while(rs.next()) {
 				
-				Prestamo p= new Prestamo(rs.getInt("identificador"),rs.getLocalDate("fecha"),rs.getInt("idejemplar"),rs.getInt("idcopia"));
+				Prestamo p= new Prestamo(rs.getInt("identificador"),rs.getDate("fecha").toLocalDate(),rs.getInt("idejemplar"),rs.getInt("idcopia"));
 				lista.add(p);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -98,7 +97,7 @@ public class PrestamoRepositoryJDBC implements PrestamoRepository {
 			
 			while(rs.next()) {
 				
-				Prestamo p= new Prestamo(rs.getInt("identificador"),rs.getLocalDate("fecha"),rs.getInt("idejemplar"),rs.getInt("idcopia"));
+				Prestamo p= new Prestamo(rs.getInt("identificador"),rs.getDate("fecha").toLocalDate(),rs.getInt("idejemplar"),rs.getInt("idcopia"));
 				lista.add(p);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
