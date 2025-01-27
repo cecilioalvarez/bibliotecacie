@@ -31,8 +31,7 @@ List<Prestamo> lista=(List<Prestamo>) request.getAttribute("lista");%>
 				<tr class="table-danger">
 					<th><a href="?orden=identificador">Identificador</th>
 					<th><a href="?orden=fecha">Fecha</th>
-					<th><a href="?orden=idejemplar">Id Ejemplar</th>
-					<th><a href="?orden=idcopia">Id Copia</th>
+					
 					<th>Borrar</th>
 				</tr>
 			</thead>
@@ -42,8 +41,7 @@ List<Prestamo> lista=(List<Prestamo>) request.getAttribute("lista");%>
 				<tr>
 					<td><%=p.getIdentificador()%></td>
 					<td><%=p.getFecha()%></td>
-					<td><%=p.getIdejemplar()%></td>
-					<td><%=p.getIdcopia()%></td>
+					
 					<td><a href="?comando=borrarprestamo&identificador=<%=p.getIdentificador()%>">borrar</a></td>
 				</tr>
 			<%
