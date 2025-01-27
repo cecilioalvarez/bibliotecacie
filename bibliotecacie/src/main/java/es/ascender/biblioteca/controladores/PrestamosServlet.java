@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +21,7 @@ import es.cie.negocio.Prestamo;
 import es.cie.repositories.PrestamoRepository;
 import es.cie.repositories.jdbc.PrestamoRepositoryJDBC;
 
-//@WebServlet("/PrestamosServlet")
+@WebServlet("/PrestamosServlet")
 public class PrestamosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -54,7 +55,7 @@ public class PrestamosServlet extends HttpServlet {
 					int identificador=Integer.parseInt(request.getParameter("identificador"));
 					String fechaTexto= request.getParameter("fecha");
 					Calendar calendario= Calendar.getInstance();
-					DateFormat formateador= new SimpleDateFormat ("dd-MM-yyyy");
+					DateFormat formateador= new SimpleDateFormat ("yyyy-MM-dd");
 					Date fecha=null;
 					try {
 						fecha = formateador.parse(fechaTexto);
