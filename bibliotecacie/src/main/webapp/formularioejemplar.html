@@ -18,7 +18,7 @@
 	</div>
 	
  <div class="container">
-	<h2>Introduce tus datos</h2>
+	<h2>Introduce ejemplar</h2>
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -29,11 +29,12 @@
 
 		<div class="container">
 			<div class="form-group">
-
+				<label for="id"> Id: </label> <input type="text" id="id"
+					class="form-control" name="id" placeholder="introduce el ID" />
+				
+				 
 				<label for="isbn"> ISBN: </label> <input type="text" id="isbn"
 					class="form-control" name="isbn" placeholder="introduce el ISBN" />
-				<small class="form-text"> (Incluye numeros y
-				 letras)</small>
 			</div>
 
 			<div class="form-group">
@@ -50,7 +51,7 @@
 					placeholder="introduce el autor" /> <small class="form-text">
 					(Autor del libro)</small>
 			</div>
-			<input type="hidden" name="comando" value="salvarlibro"/>
+			<input type="hidden" name="comando" value="salvarejemplar"/>
 			<input type="submit" class="btn btn-secondary" name="Guardar" />
 		</div>
 
