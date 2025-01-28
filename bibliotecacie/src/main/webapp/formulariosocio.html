@@ -17,11 +17,11 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 		crossorigin="anonymous"></script>
-		
+
 	<form>
 		<div class="container">
 			<div class="form-group">
-			
+
 
 				<label for="nombre">Nombre:</label> <input type="text" id="nombre"
 					class="form-control" name="nombre"
@@ -40,18 +40,20 @@
 				<label for="dni">Dni:</label> <input type="text" id="dni"
 					class="form-control" name="dni" placeholder="Introduce el dni" />
 				<small class="form-text"> </small>
-			
+
 			</div>
-			<form> <br>
-        <label for="robotCheck">¿Eres un robot?</label><br><br>
-        <button type="button" onclick="mostrarMensaje()">No soy un robot y tu lo eres?</button>
-    </form><br><br>
-			
-			<br> <input type="hidden" name="comando" value="salvarsocio" />
-			<input type="submit" value="Añadir" />
+			<div>
+				<br> <label for="robotCheck">¿Eres un robot?</label><br>
+				<br>
+				<button type="button" onclick="mostrarMensaje()">No soy un
+					robot y tu lo eres?</button>
+			</div>
+			<br>
+			<br> <br> <input type="hidden" name="comando"
+				value="salvarsocio" /> <input type="submit" value="Añadir" />
 		</div>
-		
+
 	</form>
-	
+
 </body>
 </html>
