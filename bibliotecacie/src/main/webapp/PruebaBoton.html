@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación</title>
+    <style>
+        .loading-circle {
+            display: none;
+            border: 5px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 5px solid #3498db;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+        }
+
+        .checkmark {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #28a745;
+            position: relative;
+        }
+
+        .checkmark:after {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 6px;
+            width: 10px;
+            height: 20px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+<form>
+    <label for="robotCheck">¿Eres un robot?</label><br><br>
+    <button type="button" onclick="mostrarMensaje()">No soy un robot</button>
+</form><br><br>
+
+<div class="loading-circle" id="loadingCircle"></div>
+<div class="checkmark" id="checkmark"></div>
+
+<script>
+    function mostrarMensaje() {
+        var loadingCircle = document.getElementById('loadingCircle');
+        var checkmark = document.getElementById('checkmark');
+
+        // Mostrar el círculo de "cargando"
+        loadingCircle.style.display = 'block';
+
+        // Simular un retraso de 2 segundos (2000 ms)
+        setTimeout(function() {
+            // Ocultar el círculo de "cargando"
+            loadingCircle.style.display = 'none';
+
+            // Mostrar el tic verde de "confirmado"
+            checkmark.style.display = 'block';
+        }, 2000);
+    }
+</script>
+
+</body>
+</html>
