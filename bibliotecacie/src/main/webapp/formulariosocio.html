@@ -43,17 +43,36 @@
 
 			</div>
 			<div>
-				<br> <label for="robotCheck">¿Eres un robot?</label><br>
-				<br>
+				<br> <label for="robotCheck">¿Eres un robot?</label><br> <br>
 				<button type="button" onclick="mostrarMensaje()">No soy un
-					robot, ¿tu lo eres?</button>
+					robot, ¿lo eres tu?</button>
 			</div>
 			<br>
-			<br> <br> <input type="hidden" name="comando"
+			<div></div>
+			<div class="loading-circle" id="loadingCircle"></div>
+			<div class="checkmark" id="checkmark"></div>
+			<br> <br> <br> <input type="hidden" name="comando"
 				value="salvarsocio" /> <input type="submit" value="Añadir" />
 		</div>
 
 	</form>
+
+	<script>
+		function mostrarMensaje() {
+			var loadingCircle = document.getElementById('loadingCircle');
+			var checkmark = document.getElementById('checkmark');
+
+			loadingCircle.style.display = 'block';
+
+			setTimeout(function() {
+
+				loadingCircle.style.display = 'none';
+
+				checkmark.style.display = 'block';
+			}, 2000);
+		}
+	</script>
+
 
 </body>
 </html>
