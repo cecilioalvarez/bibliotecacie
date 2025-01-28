@@ -49,7 +49,7 @@ public class LibroRepositoryJDBC implements LibroRepository {
 				Statement sentencia = conexion.createStatement();) {
 			ResultSet rs = sentencia.executeQuery("select * from libro where autor= '" + autor + "'");
 			while (rs.next()) {
-				Libro l = new Libro(rs.getString("isbn"), rs.getString("autor"), rs.getString("titulo"),
+				Libro l = new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"),
 						rs.getInt("paginas"));
 				lista.add(l);
 			}
@@ -67,7 +67,7 @@ public class LibroRepositoryJDBC implements LibroRepository {
 				Statement sentencia = conexion.createStatement();) {
 			ResultSet rs = sentencia.executeQuery("select * from libro where titulo= '" + titulo + "'");
 			while (rs.next()) {
-				Libro l = new Libro(rs.getString("isbn"), rs.getString("autor"), rs.getString("titulo"),
+				Libro l = new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"),
 						rs.getInt("paginas"));
 				lista.add(l);
 			}
@@ -86,7 +86,7 @@ public class LibroRepositoryJDBC implements LibroRepository {
 			ResultSet rs = sentencia.executeQuery("select * from libro order by" + orden);
 
 			while (rs.next()) {
-				Libro l = new Libro(rs.getString("isbn"), rs.getString("autor"), rs.getString("titulo"),
+				Libro l = new Libro(rs.getString("isbn"), rs.getString("titulo"), rs.getString("autor"),
 						rs.getInt("paginas"));
 				lista.add(l);
 			}
