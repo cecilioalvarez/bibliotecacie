@@ -58,7 +58,7 @@ List<LineaPrestamo> lista=(List<LineaPrestamo>) request.getAttribute("lista");%>
 
 	</div>
 	<div class="container">
-	<a href="?comando=formularioprestamo">insertar</a>
+	<a href="?comando=formulariolineaprestamo">insertar</a>
 	</div>
 
 </body>
