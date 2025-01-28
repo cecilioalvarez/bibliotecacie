@@ -14,9 +14,6 @@ import es.cie.negocio.Libro;
 import es.cie.repositories.LibroRepository;
 import es.cie.repositories.jdbc.LibroRepositoryJDBC;
 
-/**
- * Servlet implementation class LibroServlet
- */
 @WebServlet("/LibroServlet")
 public class LibroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,22 +22,19 @@ public class LibroServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		
+
 		System.out.println("hola");
 		List<Libro> lista = repo.buscarTodos();
-		
+
 		if (request.getParameter("comando") == null) {
 
-		
-				System.out.println("llega");
-				System.out.println("llega"+lista.size());
-				request.setAttribute("lista", lista);
-				RequestDispatcher despachador = request.getRequestDispatcher("buscadorlibrojdbc.jsp");
+			System.out.println("llega");
+			System.out.println("llega" + lista.size());
+			request.setAttribute("lista", lista);
+			RequestDispatcher despachador = request.getRequestDispatcher("buscadorlibrojdbc.jsp");
 
-				despachador.forward(request, response);
+			despachador.forward(request, response);
 
-			
 		}
 
 		else {
@@ -64,9 +58,26 @@ public class LibroServlet extends HttpServlet {
 				request.setAttribute("lista", lista);
 				RequestDispatcher despachador = request.getRequestDispatcher("listasociosjdbc.jsp");
 				despachador.forward(request, response);
+			} else if (request.getParameter("comando").equals("buscar")) {
+
+				LibroRepository repo = new LibroRepositoryJDBC();
+				System.out.println("tipobusqueda"+ request.getParameter("tipobusqueda"));
+				System.out.println("textobusqueda"+ request.getParameter("textobusqueda"));
+				System.out.println("llega" + lista.size());
+				
+				
+				 lista = repo.buscarPorAutor(request.getParameter("textobusqueda"));
+				request.setAttribute("lista", lista);
+				RequestDispatcher despachador = request.getRequestDispatcher("buscadorlibrojdbc.jsp");
+
+				despachador.forward(request, response);
+
 			}
+
 		}
 	}
+
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

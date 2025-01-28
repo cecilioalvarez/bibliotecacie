@@ -37,6 +37,7 @@
 			<option>autor</option>
 			<option>isbn</option>
 		</select> 
+		<input type="hidden" name="comando" value="buscar"/>
 		<input type="text" name="textobusqueda" /> <input type="submit" class="btn btn-warning" value="Buscar" />
 	</form>
 
