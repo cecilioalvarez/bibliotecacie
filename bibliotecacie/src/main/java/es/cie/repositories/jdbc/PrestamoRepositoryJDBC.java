@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.cie.negocio.LineaPrestamo;
 import es.cie.negocio.Prestamo;
 import es.cie.repositories.PrestamoRepository;
 
@@ -103,6 +104,31 @@ public class PrestamoRepositoryJDBC implements PrestamoRepository {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
+		return lista;
+	}
+
+	@Override
+	public List<LineaPrestamo> buscarLineas(int identificador) {
+		Connection conexion=null;
+		Statement sentencia=null;
+		ResultSet rs=null;
+		
+		List<LineaPrestamo> lista= new ArrayList<LineaPrestamo>();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion=DriverManager.getConnection(DB_URL,USER,PASS);
+			sentencia= conexion.createStatement();
+			rs= sentencia.executeQuery("select * from lineaprestamos where identificador="+ identificador);
+			
+			while(rs.next()) {
+				
+				LineaPrestamo lp= new LineaPrestamo(rs.getInt("identificador"),rs.getInt("identificadorlinea"),rs.getInt("idejemplar"),rs.getInt("idcopia"));
+				lista.add(lp);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return lista;
 	}
 	}
