@@ -23,13 +23,11 @@ public class LibroServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println("hola");
 		List<Libro> lista = repo.buscarTodos();
 
+		//ENSEÑA TODA LA LISTA
 		if (request.getParameter("comando") == null) {
 
-			System.out.println("llega");
-			System.out.println("llega" + lista.size());
 			request.setAttribute("lista", lista);
 			RequestDispatcher despachador = request.getRequestDispatcher("buscadorlibrojdbc.jsp");
 
@@ -37,6 +35,7 @@ public class LibroServlet extends HttpServlet {
 
 		}
 
+		//PENDIENTE
 		else {
 			String comando = request.getParameter("comando");
 			if (comando.equals("formulariolibro")) {
@@ -55,9 +54,13 @@ public class LibroServlet extends HttpServlet {
 				LibroRepository repo = new LibroRepositoryJDBC();
 				repo.insertar(l);
 
+				lista=repo.buscarTodos();
+				
 				request.setAttribute("lista", lista);
-				RequestDispatcher despachador = request.getRequestDispatcher("listasociosjdbc.jsp");
+				RequestDispatcher despachador = request.getRequestDispatcher("buscadorlibrojdbc.jsp");
 				despachador.forward(request, response);
+				
+				
 			} else if (request.getParameter("comando").equals("buscar")) {
 
 				LibroRepository repo = new LibroRepositoryJDBC();

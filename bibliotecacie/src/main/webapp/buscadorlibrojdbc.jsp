@@ -70,6 +70,8 @@
 
 		<% } %>
 	</table>
+	
+	<a href="?comando=formulariolibro">insertar nuevo libro</a>
 	</div>
 </body>
 </html>
