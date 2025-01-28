@@ -7,6 +7,10 @@ form{
 	padding-top:5%;
 }
 
+.container{
+	padding-top:20px;
+}
+
 .loading-circle {
 	display: none;
 	border: 5px solid #f3f3f3;
