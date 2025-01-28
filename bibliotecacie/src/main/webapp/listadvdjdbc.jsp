@@ -19,6 +19,8 @@ List<Dvd> lista=(List<Dvd>) request.getAttribute("lista");
 	<table>
 		<thead>
 			<tr>
+							
+				<th><a href="?orden=iddvd">Id</a></th>
 				<th><a href="?orden=titulo">Titulo</a></th>
 				<th><a href="?orden=anio">Año</a></th>
 				<th><a href="?orden=disponible">Disponible</a></th>
@@ -29,7 +31,7 @@ List<Dvd> lista=(List<Dvd>) request.getAttribute("lista");
 		<%
 	for(Dvd d:lista){%>
 		<tr>
-
+			<td><%=d.getIddvd() %></td>
 			<td><%=d.getTitulo() %></td>
 			<td><%=d.getAnio() %></td>
             <td><%=d.getDisponible() ? "disponible" : "no disponible" %></td>			
