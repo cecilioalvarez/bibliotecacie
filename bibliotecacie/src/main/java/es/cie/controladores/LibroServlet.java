@@ -62,38 +62,30 @@ public class LibroServlet extends HttpServlet {
 				despachador.forward(request, response);
 				
 				
-			} else if (request.getParameter("comando").equals("buscar")) {
-
-				LibroRepository repo = new LibroRepositoryJDBC();
-				System.out.println("tipobusqueda"+ request.getParameter("tipobusqueda"));
-				System.out.println("textobusqueda"+ request.getParameter("textobusqueda"));
-				System.out.println("llega" + lista.size());
-				
-				
-				 lista = repo.buscarPorAutor(request.getParameter("textobusqueda"));
-				request.setAttribute("lista", lista);
-				RequestDispatcher despachador = request.getRequestDispatcher("buscadorlibrojdbc.jsp");
-
-				despachador.forward(request, response);
-
-			}else if (request.getParameter("comando").equals("buscar")) {
-
-				//LibroRepository repo = new LibroRepositoryJDBC();
-				//System.out.println("tipobusqueda"+ request.getParameter("tipobusqueda"));
-				//System.out.println("textobusqueda"+ request.getParameter("textobusqueda"));
-				//System.out.println("llega" + lista.size());
-				
-				
-				lista = repo.buscarPorTitulo(request.getParameter("textobusqueda"));
-				request.setAttribute("lista", lista);
-				RequestDispatcher despachador = request.getRequestDispatcher("buscadorlibrojdbc.jsp");
-
-				despachador.forward(request, response);
+			} else if (comando.equals("buscar")) {
+			    String tipobusqueda = request.getParameter("tipobusqueda");
+			    String textobusqueda = request.getParameter("textobusqueda");
+			    
+			    
+			    
+			    if ("autor".equals(tipobusqueda)) {
+			        lista = repo.buscarPorAutor(textobusqueda);
+			    } else if ("titulo".equals(tipobusqueda)) {
+			        lista = repo.buscarPorTitulo(textobusqueda);
+			    } else {
+			        
+			        lista = repo.buscarTodos(); 
+			    }
+			    
+			    request.setAttribute("lista", lista);
+			    RequestDispatcher despachador = request.getRequestDispatcher("buscadorlibrojdbc.jsp");
+			    despachador.forward(request, response);
+			}
 
 			}
 
 		}
-	}
+	
 
 	
 
