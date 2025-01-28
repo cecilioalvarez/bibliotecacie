@@ -27,10 +27,6 @@
 
 	<div class="container">
 
-
-
-
-
 	<form method="get">
 		<select name="tipobusqueda">
 			<option>titulo</option>
@@ -43,7 +39,7 @@
 
 	<h1>Lista De Libros</h1>
 	<table class="table table-striped table-hover">
-		<caption>LIBROS</caption>
+		
 		<tr>
 			<th>isbn</th>
 			<th>titulo</th>
@@ -69,8 +65,12 @@
 
 		<% } %>
 	</table>
-	
+	<p>
 	<a href="?comando=formulariolibro">insertar nuevo libro</a>
+	</p>
+	<p>
+	<a href="http://localhost:8080/bibliotecacie/LibroServlet">ver listado completo</a>
+	</p>
 	</div>
 </body>
 </html>
