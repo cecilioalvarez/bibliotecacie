@@ -76,9 +76,8 @@ public class PrestamosServlet extends HttpServlet {
 				request.setAttribute("lista", lista);
 				RequestDispatcher despachador = request.getRequestDispatcher("listaprestamosjdbc.jsp");
 				despachador.forward(request, response);
-				} 
-			else if (comando.equals("borrarprestamo")) {
-				
+			} else if (comando.equals("borrarprestamo")) {
+
 				int identificador = Integer.parseInt(request.getParameter("identificador"));
 
 				Prestamo p = new Prestamo(identificador);
@@ -90,28 +89,16 @@ public class PrestamosServlet extends HttpServlet {
 				request.setAttribute("lista", lista);
 				RequestDispatcher despachador = request.getRequestDispatcher("listaprestamosjdbc.jsp");
 				despachador.forward(request, response);
-			
-				
-				
+
+			} else if (comando.equals("buscarLineas") ) {
+				List<LineaPrestamo> lista1 = null;
+				lista1 = repo.buscarLineas(Integer.parseInt(request.getParameter("identificador")));
+				request.setAttribute("lista", lista1);
+				RequestDispatcher despachador = request.getRequestDispatcher("listalineaprestamosjdbc.jsp");
+				despachador.forward(request, response);
+
 			}
 		}
-	List<LineaPrestamo> lista1=null;
-	
-	if (request.getParameter("comando") == null) {
 
-		if (request.getParameter("buscarLineas") != null) {
-			
-			lista1 = repo.buscarLineas(Integer.parseInt(request.getParameter("identificador")));
-
-		} else {
-
-		}
-		request.setAttribute("lista", lista1);
-		RequestDispatcher despachador = request.getRequestDispatcher("listalineaprestamosjdbc.jsp");
-		despachador.forward(request, response);
-
-	
 	}
-
-}
 }
