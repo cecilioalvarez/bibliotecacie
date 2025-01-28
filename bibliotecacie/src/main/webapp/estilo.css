@@ -1,5 +1,10 @@
 h1 {
+	padding-top:20px;
 	padding-left: 35%;
+}
+
+form{
+	padding-top:5%;
 }
 
 .loading-circle {
