@@ -56,6 +56,7 @@ public class LibroServlet extends HttpServlet {
 
 				lista=repo.buscarTodos();
 				
+				
 				request.setAttribute("lista", lista);
 				RequestDispatcher despachador = request.getRequestDispatcher("buscadorlibrojdbc.jsp");
 				despachador.forward(request, response);
