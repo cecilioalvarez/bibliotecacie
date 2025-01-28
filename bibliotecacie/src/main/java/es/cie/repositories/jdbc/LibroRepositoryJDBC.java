@@ -61,13 +61,14 @@ public class LibroRepositoryJDBC implements LibroRepository {
 	}
 
 	@Override
-	public List<Libro> porTitulo(String titulo) {
+	public List<Libro> buscarPorTitulo(String titulo) {
 		List<Libro> lista = new ArrayList<Libro>();
 		try (Connection conexion = DriverManager.getConnection(cadenaconexion, "root", "");
 				Statement sentencia = conexion.createStatement();) {
 			ResultSet rs = sentencia.executeQuery("select * from libro where titulo= '" + titulo + "'");
 			while (rs.next()) {
-				Libro l = new Libro(rs.getString("titulo"));
+				Libro l = new Libro(rs.getString("isbn"), rs.getString("autor"), rs.getString("titulo"),
+						rs.getInt("paginas"));
 				lista.add(l);
 			}
 		} catch (SQLException e) {

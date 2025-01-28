@@ -75,6 +75,20 @@ public class LibroServlet extends HttpServlet {
 
 				despachador.forward(request, response);
 
+			}else if (request.getParameter("comando").equals("buscar")) {
+
+				//LibroRepository repo = new LibroRepositoryJDBC();
+				//System.out.println("tipobusqueda"+ request.getParameter("tipobusqueda"));
+				//System.out.println("textobusqueda"+ request.getParameter("textobusqueda"));
+				//System.out.println("llega" + lista.size());
+				
+				
+				lista = repo.buscarPorTitulo(request.getParameter("textobusqueda"));
+				request.setAttribute("lista", lista);
+				RequestDispatcher despachador = request.getRequestDispatcher("buscadorlibrojdbc.jsp");
+
+				despachador.forward(request, response);
+
 			}
 
 		}

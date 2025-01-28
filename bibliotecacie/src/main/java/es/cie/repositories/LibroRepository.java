@@ -8,7 +8,7 @@ public interface LibroRepository {
 	
 	List<Libro> buscarTodos ();
 	List<Libro> buscarPorAutor(String autor);
-	List<Libro> porTitulo (String titulo);
+	List<Libro> buscarPorTitulo (String titulo);
 	List<Libro> porOrden (String orden);
 	void insertar (Libro libro);
 	
