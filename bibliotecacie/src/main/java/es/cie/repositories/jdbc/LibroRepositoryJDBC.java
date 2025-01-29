@@ -83,26 +83,6 @@ public class LibroRepositoryJDBC implements LibroRepository {
 	}
 
 	@Override
-	public void modificar(Libro libro) {
-		Connection conexion = null;
-		Statement sentencia = null;
-		ResultSet rs = null;
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection(DB_URL, USER, PASS);
-			sentencia = conexion.createStatement();
-			String modificarsql = "update into libro values ('" + libro.getIsbn() + "','" + libro.getTitulo() + "','"
-					+ libro.getAutor() + "','" + libro.getPaginas() + "')";
-			sentencia.executeUpdate(modificarsql);
-
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	@Override
 	public List<Libro> buscarTodosOrdenados(String orden) {
 		Connection conexion = null;
 		Statement sentencia = null;

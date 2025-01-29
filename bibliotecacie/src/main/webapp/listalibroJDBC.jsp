@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LISTADO LIBROS</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -19,7 +19,7 @@
 </head>
 <body>
 
-	<h1>Datos</h1>
+	<h1>Biblioteca CIE</h1>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -66,12 +66,14 @@
 				<td><%=l.getPaginas()%></td>
 				<td><a class="btn btn-secondary"
 					href="?comando=borrarlibro&isbn=<%=l.getIsbn()%>"> Borrar</a></td>
-					
+
 			</tr>
 			<%
 			}
 			%>
 		</table>
-		<a href="?comando=formulariolibro"> Insertar Libro</a>
+		<button type="button" class="btn btn-warning">
+			<a href="?comando=formulariolibro"> Insertar Libro</a>
+		</button>
 </body>
 </html>

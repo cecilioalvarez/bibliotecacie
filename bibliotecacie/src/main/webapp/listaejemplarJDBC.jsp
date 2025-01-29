@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>EJEMPLARES LIBRO</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -19,7 +19,7 @@
 </head>
 <body>
 
-	<h1>Datos</h1>
+	<h1>Biblioteca CIE</h1>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -30,7 +30,10 @@
 
 		<%
 		EjemplarRepository repo = new EjemplarRepositoryJDBC();
+	
 		List<Ejemplar> lista = null;
+
+	
 
 		if (request.getParameter("orden") != null) {
 			out.println("Ordenado por " + request.getParameter("orden"));
@@ -43,6 +46,9 @@
 		%>
 
 		<h1>Listado de Ejemplares</h1>
+
+
+
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
@@ -70,6 +76,8 @@
 			}
 			%>
 		</table>
-		<a href="?comando=formularioejemplar"> Insertar ejemplar</a>
+		<button type="button" class="btn btn-warning">
+			<a href="?comando=formularioejemplar"> Insertar ejemplar </a>
+		</button>
 </body>
 </html>

@@ -104,10 +104,4 @@ public class EjemplarRepositoryJDBC implements EjemplarRepository {
 
 	}
 
-	@Override
-	public void modificar(Ejemplar ejemplar) {
-		// TODO Auto-generated method stub
-
-	}
-
 }
